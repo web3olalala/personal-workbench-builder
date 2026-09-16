@@ -1,0 +1,4 @@
+interface:
+  display_name: "Personal Workbench Builder"
+  short_description: "帮非技术用户从真实工作流搭建可长期使用的个人工作台"
+  default_prompt: "Use $personal-workbench-builder to understand my workflow before planning and building my personal workbench."

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "project_name": "",
+  "phase": "discovery",
+  "created_at": "",
+  "updated_at": "",
+  "primary_scenario": null,
+  "primary_device": "unknown",
+  "data_mode": "undecided",
+  "feature_confirmation": {
+    "confirmed": false,
+    "confirmed_at": null
+  },
+  "ui_confirmation": {
+    "confirmed": false,
+    "choice": null,
+    "confirmed_at": null
+  },
+  "third_party_dependencies": [],
+  "deployment": {
+    "status": "not-started",
+    "provider": null,
+    "url": null
+  },
+  "pwa": {
+    "status": "not-started"
+  },
+  "qa": {
+    "status": "not-started",
+    "last_run_at": null,
+    "unverified": []
+  }
+}
