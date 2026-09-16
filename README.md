@@ -1,6 +1,8 @@
 # Personal Workbench Builder
 
-一个面向非技术用户的 Codex Skill：先理解用户真实的生活或工作流程，再规划功能、判断可行性、制作 3 套可点击 UI、完成开发与数据持久化，并在需要时接入多端同步、PWA 和正式部署。
+一个面向非技术用户的跨平台 Agent Skill：先理解用户真实的生活或工作流程，再规划功能、判断可行性、制作 3 套可点击 UI、完成开发与数据持久化，并在需要时接入多端同步、PWA 和正式部署。
+
+本项目遵循开放的 [Agent Skills 规范](https://agentskills.io/specification)，核心 `SKILL.md` 不依赖某一家模型或 Agent 的专属字段。可在 Codex、Claude Code、Cursor、Gemini CLI、GitHub Copilot、WorkBuddy、千问办公（QwenWork）等支持 Agent Skills 的工具中使用；其他能够读取本地文件并执行脚本的 Agent，也可以手动加载 `SKILL.md`。
 
 它不是固定 Dashboard 模板，也不会在用户只说一句“我想做个工作台”时立即开始写代码。
 
@@ -21,24 +23,22 @@
 
 ## 安装
 
-使用codex跟他说：
-```bash
-帮我安装这个skill，仓库链接为：https://github.com/web3olalala/personal-workbench-builder
-```
-
-安装后，可直接说：
+打开你正在使用的 Agent，把下面这句话发给它：
 
 ```text
-使用 $personal-workbench-builder，初始化我的个人工作台。
+请帮我安装这个项目作为 Skill：
+https://github.com/web3olalala/personal-workbench-builder
 ```
 
-也可以自然描述需求，例如：
+安装完成后，告诉 Agent：
 
 ```text
-我做小红书，灵感、选题、发布和复盘散落在好几个地方，想做一个每天使用的工作台。
+使用 personal-workbench-builder，帮我创建个人工作台。
 ```
 
-Skill 会先进入访谈，不会立即生成项目。
+就这么简单。你不需要自己下载文件、输入命令或判断安装目录，交给 Agent 处理即可。Codex、Claude Code、Cursor、Gemini CLI、GitHub Copilot、WorkBuddy 和千问办公等支持 Skill 的 Agent 都可以使用。
+
+启动后，Skill 会先通过聊天了解你的需求，不会立即开始写代码。
 
 ## 工作方式
 
@@ -56,7 +56,7 @@ Skill 会先进入访谈，不会立即生成项目。
   → 长期增量迭代
 ```
 
-功能方案和最终 UI 是两个明确的确认点。进入正式开发后，普通技术选择、代码实现、Bug 修复和测试由 Codex 自主完成；只有账号授权、API Key、数据权限、外部服务创建和必须由本人决定的事项会暂停等待用户。
+功能方案和最终 UI 是两个明确的确认点。进入正式开发后，普通技术选择、代码实现、Bug 修复和测试由 Agent 自主完成；只有账号授权、API Key、数据权限、外部服务创建和必须由本人决定的事项会暂停等待用户。
 
 ## 项目状态
 
@@ -104,7 +104,7 @@ personal-workbench-builder/
 ├── README.md
 ├── LICENSE
 ├── agents/
-│   └── openai.yaml
+│   └── openai.yaml       # Codex 可选界面元数据，其他 Agent 可忽略
 ├── references/
 │   ├── interview.md
 │   ├── workflow-and-planning.md
@@ -122,7 +122,8 @@ personal-workbench-builder/
 │   ├── init_workbench_state.py
 │   ├── validate_workbench_state.py
 │   ├── copy_starter.py
-│   └── validate_scenarios.py
+│   ├── validate_scenarios.py
+│   └── validate_skill.py
 └── assets/
     ├── state-template/
     └── react-vite-pwa-starter/
@@ -131,10 +132,18 @@ personal-workbench-builder/
 ## 本仓库自检
 
 ```bash
-python3 /path/to/skill-creator/scripts/quick_validate.py .
+python3 scripts/validate_skill.py
 python3 scripts/validate_scenarios.py
 python3 -m unittest discover -s tests -v
 ```
+
+如果本机安装了开放规范的 `skills-ref`，还可以额外运行：
+
+```bash
+skills-ref validate .
+```
+
+`agents/openai.yaml` 是 Codex 的可选显示配置，不属于 Skill 运行时的硬依赖。其他 Agent 会忽略它，核心能力仍由标准的 `SKILL.md`、`references/`、`scripts/` 和 `assets/` 提供。
 
 场景校验是可审计的流程契约检查，不等同于替真实用户做完整端到端产品开发。云端同步、第三方授权、真实设备安装和生产部署仍需在具体项目中使用真实账号与环境验证。
 

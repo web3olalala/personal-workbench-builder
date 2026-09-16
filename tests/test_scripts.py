@@ -50,6 +50,10 @@ class ScriptTests(unittest.TestCase):
         result = self.run_script("validate_scenarios.py")
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
+    def test_portable_skill_contract(self) -> None:
+        result = self.run_script("validate_skill.py")
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
 
 if __name__ == "__main__":
     unittest.main()

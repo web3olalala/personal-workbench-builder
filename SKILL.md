@@ -1,11 +1,14 @@
 ---
 name: personal-workbench-builder
 description: Plan, prototype, build, deploy, and iteratively improve a personal workbench for a non-technical user. Use when someone wants a personal dashboard, life or work operating system, creator workspace, student hub, client tracker, or an existing workbench changed without losing data.
+license: MIT
 ---
 
 # Personal Workbench Builder
 
 Guide a non-technical user from real-life workflow discovery to a working, persistent, responsive personal workbench. Do not treat this as a one-shot dashboard prompt or a fixed template.
+
+Resolve every bundled `scripts/`, `references/`, and `assets/` path relative to the directory containing this `SKILL.md`; do not assume the agent's current working directory is the skill directory.
 
 ## Start by detecting the mode
 
