@@ -21,13 +21,12 @@
 
 ## 安装
 
-将整个仓库复制到 Codex skills 目录：
-
+使用codex跟他说：
 ```bash
-git clone <your-repository-url> ~/.codex/skills/personal-workbench-builder
+帮我安装这个skill，仓库链接为：https://github.com/web3olalala/personal-workbench-builder
 ```
 
-重新打开 Codex 后，可直接说：
+安装后，可直接说：
 
 ```text
 使用 $personal-workbench-builder，初始化我的个人工作台。
